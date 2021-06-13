@@ -141,6 +141,33 @@ TP_2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP_2.dir\build.make CMakeFiles/TP_2.dir/build
 .PHONY : TP_2/fast
 
+Etudiant.obj: Etudiant.cpp.obj
+
+.PHONY : Etudiant.obj
+
+# target to build an object file
+Etudiant.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP_2.dir\build.make CMakeFiles/TP_2.dir/Etudiant.cpp.obj
+.PHONY : Etudiant.cpp.obj
+
+Etudiant.i: Etudiant.cpp.i
+
+.PHONY : Etudiant.i
+
+# target to preprocess a source file
+Etudiant.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP_2.dir\build.make CMakeFiles/TP_2.dir/Etudiant.cpp.i
+.PHONY : Etudiant.cpp.i
+
+Etudiant.s: Etudiant.cpp.s
+
+.PHONY : Etudiant.s
+
+# target to generate assembly for a file
+Etudiant.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP_2.dir\build.make CMakeFiles/TP_2.dir/Etudiant.cpp.s
+.PHONY : Etudiant.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -177,6 +204,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... TP_2
+	@echo ... Etudiant.obj
+	@echo ... Etudiant.i
+	@echo ... Etudiant.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/TP_2.dir/Etudiant.cpp.obj"
   "CMakeFiles/TP_2.dir/main.cpp.obj"
   "TP_2.exe"
   "TP_2.exe.manifest"
