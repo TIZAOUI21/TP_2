@@ -6,10 +6,10 @@
 class Etudiant
 {
 private:
-    friend void File2Program(std::string un_identifiant);
-    friend void NotesParOrdreCroissante();
-    friend void Program2File();
-    friend void ObjectDefect();
+    friend void fichierAuProgram(std::string un_identifiant);
+    friend void NotesParOrdreCroissant();
+    friend void ProgramAuFichier();
+    friend void ligneDefectueuse();
 public:
     std::string un_identifiant;
     Etudiant();
@@ -17,7 +17,6 @@ public:
     void ajouterNote(int une_note);
     double calculerMoyenne();
     void Afficher();
-
     long matricule{};
     std::vector<int> notes;
 };
