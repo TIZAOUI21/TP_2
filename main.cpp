@@ -1,55 +1,108 @@
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<string>
+#include<vector>
+#include<fstream>
+#include"Etudiant.h"
+using namespace std;
+vector<Etudiant> Etud;
+static int NbrOfEtud = 0;
+void fichierAuProgram(string s);
+void NotesParOrdreCroissant();
+void ProgramAuFichier();
+void ligneDefectueuse();
 
-#include <fstream>
-#include <map>
-
-
-int main() {
-    std::map<std::string, std::string> les_numeros;
-    std::ofstream mesDonnesBrute("D://Clioncode//TP_2//donneesbrutes.txt", std::ios::ate | std::ios::in);
-    mesDonnesBrute << "afarah    6221334 4 17 16 18 18" << std::endl;
-    mesDonnesBrute << "alapointe 6321481 3 18 17 14" << std::endl;
-    mesDonnesBrute << "hsimpson 6001001 3 10 10 13" << std::endl;
-    mesDonnesBrute << "kgarland 6051161 2 19 18" << std::endl;
-    mesDonnesBrute << "lmarcotte 6123456 4 12 15 17 18" << std::endl;
-    mesDonnesBrute << "mahmad 6111222 7 15 16 15 17 17 18 19" << std::endl;
-    mesDonnesBrute << "ptremblay 6222333 5 17 17 18 19 20" << std::endl;
-    mesDonnesBrute << "rdavis 6343454 4 14 12 11 17" << std::endl;
-    mesDonnesBrute << "tzekkang 6123444 3 19 18 17" << std::endl;
-    mesDonnesBrute << "ztremeni 6071215 5 19 18 20 19 20" << std::endl;
-    mesDonnesBrute.close();
-
-    std::string contenuChaqueLigne = "";
-    std::ifstream mesDonnesBruteLecture("D://Clioncode//TP_2//donneesbrutes.txt");
-    std::cout << "----------------------------------------------------------- ----------------------------"
-              << std::endl;
-    std::cout << "voici les donneees brute avant le calcul des moyennes dans votre fichier donnees brute  "
-              << std::endl;
-    std::cout << "----------------------------------------------------------------------------------------- "
-              << std::endl;
-    if (mesDonnesBruteLecture.is_open() == true) {
-        std::cout << "Votre fichier est ouvert !" << std::endl;
-    } else {
-        std::cout << "Erreur de fichier";
-        return -1;
-    }
-    while (!mesDonnesBrute.eof()) {
-        if (mesDonnesBruteLecture.eof() == true) break;
-        getline(mesDonnesBruteLecture, contenuChaqueLigne);
-        std::cout << contenuChaqueLigne;
-
-        les_numeros[contenuChaqueLigne];
-        std::map<std::string, std::string>::iterator mon_iterateur;
-        for (mon_iterateur = les_numeros.begin(); mon_iterateur != les_numeros.end(); mon_iterateur++) {
-            mesDonnesBrute << mon_iterateur->first << std::endl;
+int main()
+{
+    string data;
+    ifstream infile;
+    infile.open("D://Clioncode//TP_2//donneesbrutes.txt");
+    if (infile)
+    {  int index = 0;
+        string line;
+        while (getline(infile, line))
+        {
+            fichierAuProgram(line);
         }
-        std::ofstream mesMoyennes("D://Clioncode//TP_2//moyennes.txt");
-//    mesMoyennes<<lireLigne;
-//    std::string message;
-        mesDonnesBrute.close();
-        std::ifstream mesMoyennesLecture("D://Clioncode//TP_2//moyennes.txt");
-        mesDonnesBruteLecture.close();
-        mesDonnesBrute.close();
+    }
+    NotesParOrdreCroissant();
+    ProgramAuFichier();
+    ligneDefectueuse();
+    infile.close();
+}
+void fichierAuProgram(string s)
+{
+    Etudiant etd;
+    Etud.push_back(etd);
+    int indexN = s.find(" ");
+    string identif;
+    if (indexN != string::npos)
+    {
+        for (int i = 0;i < indexN;i++) identif += s[i];
+        Etud[NbrOfEtud].un_identifiant = identif;
+    }
+    int indexM = s.find(" ",indexN + 1);
+    string matrc;
+    if (indexM != string::npos)
+    {
+        for (int i = indexN;i < indexM;i++) matrc += s[i];
+        int matric = stoi(matrc);
+        Etud[NbrOfEtud].matricule = matric;
+    }
+    //creation des notes dans le tableau vector
+    while (s[indexM]!='\0')
+    {
+        bool To_int = false;
+        string note;
+        while (s[indexM] != ' ' && s[indexM] != '\0')
+        {
+            note += s[indexM];
+            indexM++;
+            To_int = true;
+        }
+        if (To_int)
+        {
+            int n = stoi(note);
+            Etud[NbrOfEtud].notes.push_back(n);
+        }
+        else indexM++;
+    }
+    NbrOfEtud++;
+}
+// classement des donnes selon le matricule
+void NotesParOrdreCroissant()
+{
+    for (unsigned int i = 0;i < Etud.size();i++)
+    {
+        Etudiant tmp;
+        for (unsigned int j = 0;j < Etud.size()-1;j++)
+        {
+            if (Etud[j].matricule > Etud[j + 1].matricule)
+            {
+                tmp = Etud[j];
+                Etud[j] = Etud[j + 1];
+                Etud[j + 1] = tmp;
+            }
+        }
+    }
+}
+void ProgramAuFichier()
+{
+    ofstream outfile;
+    outfile.open("D://Clioncode//TP_2//moyennes.txt");
+    for ( int i = 0;i < Etud.size();i++)
+    {
+        outfile << Etud[i].matricule << " " << Etud[i].calculerMoyenne() << endl;
+    }
+    outfile.close();
+}
+void ligneDefectueuse()
+{
+    for ( int i = 0;i < Etud.size();i++)
+    {
+        if (Etud[i].notes[0] != Etud[i].notes.size() - 1)
+        {
+            cout << "Erreur dans les notes d'etudiant " << Etud[i].un_identifiant << endl;
+            Etud.erase(Etud.begin(), Etud.begin() + i);
+        }
     }
 }

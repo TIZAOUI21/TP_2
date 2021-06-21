@@ -1,18 +1,24 @@
+#ifndef _ETUDIANT_H
+#define _ETUDIANT_H
+#include<string>
+#include<vector>
 
-#ifndef TP_2_ETUDIANT_H
-#define TP_2_ETUDIANT_H
-
-#include <string>
-#include <vector>
-
-class Etudiant {
+class Etudiant
+{
 private:
-    std::vector<int> notes;
-    std::string identifiant;
-    long matricule;
+    friend void File2Program(std::string un_identifiant);
+    friend void NotesParOrdreCroissante();
+    friend void Program2File();
+    friend void ObjectDefect();
 public:
-    Etudiant(std::string un_identifiant, long un_matricule);
+    std::string un_identifiant;
+    Etudiant();
+    Etudiant(std::string identifiant , long matricule);
     void ajouterNote(int une_note);
     double calculerMoyenne();
+    void Afficher();
+
+    long matricule{};
+    std::vector<int> notes;
 };
-#endif //TP_2_ETUDIANT_H
+#endif

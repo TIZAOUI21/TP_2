@@ -6,13 +6,27 @@
 
 #IncludeRegexTransform: 
 
+D:/Clioncode/TP_2/Etudiant.cpp
+Etudiant.h
+D:/Clioncode/TP_2/Etudiant.h
+iostream
+-
+
+D:/Clioncode/TP_2/Etudiant.h
+string
+-
+vector
+-
+
 D:/Clioncode/TP_2/main.cpp
 iostream
 -
 string
 -
+vector
+-
 fstream
 -
-map
--
+Etudiant.h
+D:/Clioncode/TP_2/Etudiant.h
 

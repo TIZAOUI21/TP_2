@@ -4,5 +4,6 @@
 CMakeFiles/TP_2.dir/Etudiant.cpp.obj: ../Etudiant.cpp
 CMakeFiles/TP_2.dir/Etudiant.cpp.obj: ../Etudiant.h
 
+CMakeFiles/TP_2.dir/main.cpp.obj: ../Etudiant.h
 CMakeFiles/TP_2.dir/main.cpp.obj: ../main.cpp
 
